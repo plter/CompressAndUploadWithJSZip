@@ -10,9 +10,12 @@
 
             let zip = new JSZip();
             zip.file(f.name, f);
+
             let zipBlob = await zip.generateAsync({type: "blob"});
+
             let form = new FormData();
             form.append("zip", zipBlob, "file.zip");
+
             let resp = await fetch("ajax_upload_handler.php", {
                 method: "POST",
                 body: form
